@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:dm://localhost:5236/MONEYNOTE?schema=MONEYNOTE
+    username: SYSDBA
+    password: Sysdba123
+    driver-class-name: dm.jdbc.driver.DmDriver

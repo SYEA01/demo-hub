@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Spring Boot 版本管理 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.15</version> <!-- 推荐使用最新稳定版 -->
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>org.example</groupId>
+    <artifactId>demo-hub</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <modules>
+        <module>metadata-demo</module>
+        <module>common</module>
+    </modules>
+
+
+
+    <properties>
+        <java.version>8</java.version> <!-- 或 11、21 -->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <dm.version>8.1.2.144</dm.version>
+        <mybatis.version>2.2.2</mybatis.version>
+        <lombok.version>1.18.22</lombok.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.7.15</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 其他依赖版本管理 -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>2.2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.22</version>
+            </dependency>
+            <dependency>
+                <groupId>dm.jdbc</groupId>
+                <artifactId>dm-driver</artifactId>
+                <version>8.1.2.144</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <!-- 公共插件配置 -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${project.parent.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
