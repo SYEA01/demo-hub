@@ -1,7 +1,17 @@
 # 达梦数据库连接配置
 spring:
   datasource:
-    url: jdbc:dm://localhost:5236/MONEYNOTE?schema=MONEYNOTE
+    url: jdbc:dm://localhost:5236/TREE_DEMO?schema=TREE_DEMO
     username: SYSDBA
     password: Sysdba123
     driver-class-name: dm.jdbc.driver.DmDriver
+
+# MyBatis 配置
+mybatis:
+  # 指定Mapper XML文件的位置
+  mapper-locations: classpath:mapper/*.xml
+#  # 指定实体类所在的包
+#  type-aliases-package: org.example.tree.entity
+  configuration:
+    # 开启下划线转驼峰命名
+    map-underscore-to-camel-case: true
