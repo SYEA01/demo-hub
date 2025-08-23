@@ -17,7 +17,7 @@ import java.util.List;
 public class MetadataController {
 
     @Autowired
-    private DmMetadataService metadataService;
+    private DmMetadataService metadataService; 
 
     @GetMapping("/tables")
     public List<TableMetadata> listTables() throws SQLException {

@@ -8,8 +8,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.15</version> <!-- 推荐使用最新稳定版 -->
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.7.3</version>
+        <relativePath/>
     </parent>
 
     <groupId>org.example</groupId>
@@ -19,20 +19,23 @@
 
 
     <modules>
-        <module>metadata-demo</module>
         <module>common</module>
+        <module>metadata-demo</module>
+        <module>poi-demo</module>
+        <module>freemarker-demo</module>
+        <module>demo-core</module>
     </modules>
 
 
-
     <properties>
-        <java.version>8</java.version> <!-- 或 11、21 -->
+        <java.version>8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <dm.version>8.1.2.144</dm.version>
         <mybatis.version>2.2.2</mybatis.version>
         <lombok.version>1.18.22</lombok.version>
+        <spring.version>2.7.3</spring.version>
     </properties>
 
 
@@ -41,7 +44,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.7.15</version>
+                <version>${spring.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -50,17 +53,17 @@
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.2.2</version>
+                <version>${mybatis.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.22</version>
+                <version>${lombok.version}</version>
             </dependency>
             <dependency>
                 <groupId>dm.jdbc</groupId>
                 <artifactId>dm-driver</artifactId>
-                <version>8.1.2.144</version>
+                <version>${dm.version}</version>
             </dependency>
 
         </dependencies>

@@ -1,0 +1,7 @@
+# FreeMarker配置
+spring:
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    charset: UTF-8
+    content-type: text/html; charset=utf-8
