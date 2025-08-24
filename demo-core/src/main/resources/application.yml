@@ -15,3 +15,8 @@ mybatis:
   configuration:
     # 开启下划线转驼峰命名
     map-underscore-to-camel-case: true
+
+# 控制台打印sql日志
+logging:
+  level:
+    org.example.tree.mapper: debug

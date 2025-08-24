@@ -2,6 +2,7 @@ package org.example.tree.service.impl;
 
 import org.example.tree.convert.SubjectConvert;
 import org.example.tree.entity.SubjectEntity;
+import org.example.tree.entity.dto.SubjectDTO;
 import org.example.tree.entity.vo.SubjectVO;
 import org.example.tree.mapper.SubjectMapper;
 import org.example.tree.service.SubjectService;
@@ -25,8 +26,25 @@ public class SubjectServiceImpl implements SubjectService {
 
 
     @Override
-    public List<SubjectVO> list() {
+    public List<SubjectVO> getAllSubjects() {
         List<SubjectEntity> subjectEntities = subjectMapper.selectAll();
-        return convert.entityToVOList(subjectEntities);
+        return convert.entityToVoList(subjectEntities);
+    }
+
+    @Override
+    public SubjectVO getById(Long id) {
+        SubjectEntity subjectEntity = subjectMapper.selectById(id);
+        return convert.entityToVo(subjectEntity);
+    }
+
+    @Override
+    public void create(SubjectDTO subjectDTO) {
+        SubjectEntity subjectEntity = convert.dtoToEntity(subjectDTO);
+        subjectMapper.insert(subjectEntity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        subjectMapper.deleteById(id);
     }
 }

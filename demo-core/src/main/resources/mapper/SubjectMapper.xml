@@ -7,8 +7,8 @@
     <!-- 结果映射：Java 实体字段 与 数据库列 的映射 -->
     <resultMap id="BaseResultMap" type="org.example.tree.entity.SubjectEntity">
         <id property="id" column="ID"/>
-        <result property="createTime" column="CREATE_TIME"/>
-        <result property="updateTime" column="UPDATE_TIME"/>
+        <result property="createTime" column="CREATE_TIME" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler"/>
+        <result property="updateTime" column="UPDATE_TIME" typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler"/>
         <result property="title" column="TITLE"/>
         <result property="userId" column="USER_ID"/>
         <result property="folderId" column="FOLDER_ID"/>
@@ -39,69 +39,19 @@
         FROM SUBJECT
     </select>
 
-    <!-- 条件查询示例（可根据需要扩展） -->
-    <select id="selectByCondition" parameterType="map" resultMap="BaseResultMap">
-        SELECT
-            <include refid="Base_Column_List"/>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="org.example.tree.entity.SubjectEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO SUBJECT (<include refid="Base_Column_List"/>)
+        VALUES (#{id},#{createTime}, #{updateTime},#{title},#{userId},#{folderId})
+    </insert>
+
+    <!-- 删除记录 -->
+    <delete id="deleteById" parameterType="long">
+        DELETE
         FROM SUBJECT
-        <where>
-            <if test="id != null">AND ID = #{id}</if>
-            <!-- 添加其他条件
-            <if test="fieldName != null and fieldName != ''">AND FIELD_NAME = #{fieldName}</if>
-            -->
-        </where>
-    </select>
-
-<!--    &lt;!&ndash; 插入记录 &ndash;&gt;-->
-<!--    <insert id="insert" parameterType="{Entity_Full_Path}"-->
-<!--            useGeneratedKeys="true" keyProperty="id">-->
-<!--        INSERT INTO {Table_Name} (-->
-<!--        CREATE_TIME,-->
-<!--        UPDATE_TIME-->
-<!--            &lt;!&ndash; 其他字段 &ndash;&gt;-->
-<!--        )-->
-<!--        VALUES (-->
-<!--        #{createTime},-->
-<!--        #{updateTime}-->
-<!--            &lt;!&ndash; 其他参数 &ndash;&gt;-->
-<!--        )-->
-<!--    </insert>-->
-
-<!--    &lt;!&ndash; 插入非空字段（更安全） &ndash;&gt;-->
-<!--    <insert id="insertSelective" parameterType="{Entity_Full_Path}"-->
-<!--            useGeneratedKeys="true" keyProperty="id">-->
-<!--        INSERT INTO {Table_Name}-->
-<!--        <trim prefix="(" suffix=")" suffixOverrides=",">-->
-<!--            <if test="id != null">ID,</if>-->
-<!--            <if test="createTime != null">CREATE_TIME,</if>-->
-<!--            <if test="updateTime != null">UPDATE_TIME,</if>-->
-<!--            &lt;!&ndash; 其他字段 &ndash;&gt;-->
-<!--        </trim>-->
-<!--        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">-->
-<!--            <if test="id != null">#{id},</if>-->
-<!--            <if test="createTime != null">#{createTime},</if>-->
-<!--            <if test="updateTime != null">#{updateTime},</if>-->
-<!--            &lt;!&ndash; 其他参数 &ndash;&gt;-->
-<!--        </trim>-->
-<!--    </insert>-->
-
-<!--    &lt;!&ndash; 更新记录（仅更新非空字段） &ndash;&gt;-->
-<!--    <update id="updateSelective" parameterType="{Entity_Full_Path}">-->
-<!--        UPDATE {Table_Name}-->
-<!--        <set>-->
-<!--            <if test="createTime != null">CREATE_TIME = #{createTime},</if>-->
-<!--            <if test="updateTime != null">UPDATE_TIME = #{updateTime},</if>-->
-<!--            &lt;!&ndash; 其他字段 &ndash;&gt;-->
-<!--        </set>-->
-<!--        WHERE ID = #{id}-->
-<!--    </update>-->
-
-<!--    &lt;!&ndash; 删除记录 &ndash;&gt;-->
-<!--    <delete id="deleteById" parameterType="long">-->
-<!--        DELETE-->
-<!--        FROM {Table_Name}-->
-<!--        WHERE ID = #{id}-->
-<!--    </delete>-->
+        WHERE ID = #{id}
+    </delete>
 
 <!--    &lt;!&ndash; 批量删除（通过 ID 列表） &ndash;&gt;-->
 <!--    <delete id="deleteByIds" parameterType="list">-->

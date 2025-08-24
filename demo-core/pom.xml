@@ -40,6 +40,12 @@
             <groupId>dm.jdbc</groupId>
             <artifactId>dm-driver</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.27</version>
+        </dependency>
     </dependencies>
 
     <build>
