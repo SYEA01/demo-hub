@@ -20,3 +20,8 @@ mybatis:
 logging:
   level:
     org.example.tree.mapper: debug
+
+# url统一前缀
+server:
+  servlet:
+    context-path: /api
