@@ -16,8 +16,7 @@
 
     <!-- 可复用的列名 SQL 片段 -->
     <sql id="Base_Column_List">
-        ID
-        , CREATE_TIME, UPDATE_TIME, NAME, PARENT_ID, USER_ID
+        ID, CREATE_TIME, UPDATE_TIME, NAME, PARENT_ID, USER_ID
     </sql>
 
     <!-- 根据主键查询 -->
@@ -35,18 +34,12 @@
         FROM SUBJECT_FOLDER
     </select>
 
-    <!--    &lt;!&ndash; 条件查询示例（可根据需要扩展） &ndash;&gt;-->
-    <!--    <select id="selectByCondition" parameterType="map" resultMap="BaseResultMap">-->
-    <!--        SELECT-->
-    <!--            <include refid="Base_Column_List"/>-->
-    <!--        FROM {Table_Name}-->
-    <!--        <where>-->
-    <!--            <if test="id != null">AND ID = #{id}</if>-->
-    <!--            &lt;!&ndash; 添加其他条件-->
-    <!--            <if test="fieldName != null and fieldName != ''">AND FIELD_NAME = #{fieldName}</if>-->
-    <!--            &ndash;&gt;-->
-    <!--        </where>-->
-    <!--    </select>-->
+    <select id="selectByParentId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from subject_folder
+        where PARENT_ID = #{parentId}
+    </select>
 
     <!-- 插入记录 -->
     <insert id="insert" parameterType="org.example.tree.entity.SubjectFolderEntity" useGeneratedKeys="true"

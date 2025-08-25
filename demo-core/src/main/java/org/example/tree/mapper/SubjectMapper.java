@@ -15,4 +15,6 @@ public interface SubjectMapper {
     void insert(SubjectEntity subjectEntity);
 
     void deleteById(@Param("id") Long id);
+
+    void deleteByFolderId(@Param("folderId") Long folderId);
 }

@@ -23,4 +23,6 @@ public interface SubjectFolderMapper {
     SubjectFolderEntity selectById(@Param("id") Long id);
 
     List<SubjectFolderEntity> selectAll();
+
+    List<SubjectFolderEntity> selectByParentId(@Param("parentId") Long folderId);
 }

@@ -52,8 +52,13 @@
         FROM SUBJECT
         WHERE ID = #{id}
     </delete>
+    <delete id="deleteByFolderId">
+        DELETE
+        FROM SUBJECT
+        WHERE FOLDER_ID = #{folderId}
+    </delete>
 
-<!--    &lt;!&ndash; 批量删除（通过 ID 列表） &ndash;&gt;-->
+    <!--    &lt;!&ndash; 批量删除（通过 ID 列表） &ndash;&gt;-->
 <!--    <delete id="deleteByIds" parameterType="list">-->
 <!--        DELETE FROM {Table_Name}-->
 <!--        WHERE ID IN-->

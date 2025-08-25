@@ -47,4 +47,9 @@ public class SubjectServiceImpl implements SubjectService {
     public void deleteById(Long id) {
         subjectMapper.deleteById(id);
     }
+
+    @Override
+    public void deleteByFolderId(Long folderId) {
+        subjectMapper.deleteByFolderId(folderId);
+    }
 }

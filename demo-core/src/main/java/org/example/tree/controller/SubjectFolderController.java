@@ -26,12 +26,6 @@ public class SubjectFolderController {
         return Result.success();
     }
 
-    @DeleteMapping("/{id}")
-    public Result<Void> deleteById(@PathVariable Long id) {
-        subjectFolderService.deleteById(id);
-        return Result.success();
-    }
-
     @PutMapping
     public Result<Void> update(@RequestBody SubjectFolderDTO subjectFolderDTO) {
         subjectFolderService.update(subjectFolderDTO);
@@ -46,6 +40,12 @@ public class SubjectFolderController {
     @GetMapping
     public Result<List<SubjectFolderVO>> getAllFolders() {
         return Result.success(subjectFolderService.getAllFolders());
+    }
+
+    @DeleteMapping("/{folderId}")
+    public Result<Void> deleteFolder(@PathVariable Long folderId) {
+        subjectFolderService.deleteFolder(folderId);
+        return Result.success();
     }
 
 }

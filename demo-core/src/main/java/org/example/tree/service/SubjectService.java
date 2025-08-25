@@ -13,4 +13,6 @@ public interface SubjectService {
     void create(SubjectDTO subjectDTO);
 
     void deleteById(Long id);
+
+    void deleteByFolderId(Long folderId);
 }

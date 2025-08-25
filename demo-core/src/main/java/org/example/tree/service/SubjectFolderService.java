@@ -16,4 +16,5 @@ public interface SubjectFolderService {
 
     List<SubjectFolderVO> getAllFolders();
 
+    void deleteFolder(Long folderId);
 }

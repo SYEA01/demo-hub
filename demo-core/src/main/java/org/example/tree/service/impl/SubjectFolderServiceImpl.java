@@ -6,8 +6,10 @@ import org.example.tree.entity.dto.SubjectFolderDTO;
 import org.example.tree.entity.vo.SubjectFolderVO;
 import org.example.tree.mapper.SubjectFolderMapper;
 import org.example.tree.service.SubjectFolderService;
+import org.example.tree.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -21,6 +23,9 @@ public class SubjectFolderServiceImpl implements SubjectFolderService {
 
     @Autowired
     private SubjectFolderMapper subjectFolderMapper;
+
+    @Autowired
+    private SubjectService subjectService;
 
     @Autowired
     private SubjectFolderConvert convert;
@@ -52,5 +57,24 @@ public class SubjectFolderServiceImpl implements SubjectFolderService {
     public List<SubjectFolderVO> getAllFolders() {
         List<SubjectFolderEntity> subjectFolderEntities = subjectFolderMapper.selectAll();
         return convert.entityToVoList(subjectFolderEntities);
+    }
+
+    @Override
+    public void deleteFolder(Long folderId) {
+        // 删除这个文件夹
+        subjectFolderMapper.deleteById(folderId);
+
+        // 删除所有课题
+        subjectService.deleteByFolderId(folderId);
+
+        // 查询这个文件夹下还有哪些文件夹
+        List<SubjectFolderEntity> folders = subjectFolderMapper.selectByParentId(folderId);
+        if (!CollectionUtils.isEmpty(folders)){
+            for (SubjectFolderEntity folder : folders) {
+                // 递归删除
+                deleteFolder(folder.getId());
+            }
+        }
+
     }
 }
