@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import org.example.service.ProgressService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ import java.util.concurrent.Executors;
 @RestController
 @RequestMapping("/progress")
 public class ProgressController {
+
+    @Autowired
+    private ProgressService progressService;
 
     @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter sseEmitter() {
@@ -44,5 +49,10 @@ public class ProgressController {
 
         executor.shutdown();
         return emitter;
+    }
+
+    @GetMapping(value = "/demo", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter demo() {
+        return progressService.demo();
     }
 }
